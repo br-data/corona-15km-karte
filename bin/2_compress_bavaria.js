@@ -14,5 +14,5 @@ bayern = topology({bayern}, 1e6);
 let ps = presimplify(bayern, sphericalTriangleArea);
 bayern = simplify(ps, 1e-9);
 
-fs.writeFileSync(resolve(__dirname, '../docs/assets/data/bayern.topo.json'), JSON.stringify(bayern), 'utf8');
+fs.writeFileSync(resolve(__dirname, '../docs/bayern.topo.json'), JSON.stringify(bayern), 'utf8');
 

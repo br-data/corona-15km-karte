@@ -3,7 +3,7 @@ $(function () {
 	let data = {borders:false};
 
 	init();
-	loadJSON('assets/data/bayern.topo.json', res => data.borders = topojson.feature(res, res.objects.bayern));
+	loadJSON('bayern.topo.json', res => data.borders = topojson.feature(res, res.objects.bayern));
 
 	function init() {
 		map = L.map('map', {
