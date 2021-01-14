@@ -9,7 +9,11 @@
   "author": "Michael Kreil (BR Data)",
   "license": "MIT",
   "dependencies": {
+    "babel-minify": "^0.5.1",
+    "express": "^4.17.1",
+    "node-zopfli": "^2.1.4",
     "topojson-server": "^3.0.1",
-    "topojson-simplify": "^3.0.3"
+    "topojson-simplify": "^3.0.3",
+    "uglifycss": "0.0.29"
   }
 }
