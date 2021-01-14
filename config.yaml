@@ -9,7 +9,7 @@ docker:
   imageFrom: ""
   ignore: "node_modules"
 build:
-  command: "npm i"
+  command: "npm i --production"
   outputFolder: ""
 run:
   command: "npm start"
