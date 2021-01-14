@@ -1,0 +1,66 @@
+name: "CI / CD"
+on:
+  push:
+    branches:
+      - live
+      - develop
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Setup k8s-app
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: br-data/k8s-config-provider-action
+          token: ${{ secrets.BRDATA_ACCESS }}
+          path: ./
+      - name: Private Action
+        uses: ./
+        with:
+          access_token: ${{ secrets.BRDATA_ACCESS }}
+          repo_name: ${{ github.event.repository.name }}
+          tag: ${{ github.sha }}
+          branch: ${{ github.ref }}
+  build:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    name: Build k8s-app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download Deployment Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: deployment
+          path: deployment
+      - uses: whoan/docker-build-with-cache-action@v5
+        with:
+          username: _json_key
+          password: "${{ secrets.GCLOUD_LIVE }}"
+          registry: eu.gcr.io
+          image_name: "${{ github.event.repository.name }}"
+          image_tag: "${{ github.sha }}"
+          context: ./deployment/k8s-app
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+      - build
+    name: Deploy k8s-app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download Deployment Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: deployment
+          path: deployment
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "290.0.1"
+          service_account_key: ${{ secrets.GCLOUD_DEV }}
+          project_id: brdata-dev
+      - run: gcloud container clusters get-credentials dev --zone europe-west1
+      - run: kubectl apply -f ./deployment/k8s-config/

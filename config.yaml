@@ -1,0 +1,22 @@
+########################
+## Cloud Build Config ##
+########################
+
+isEnabled: false
+docker:
+  preset: "yarn"
+  preparationCommand: ""
+  imageFrom: ""
+  ignore: "node_modules"
+build:
+  command: "yarn"
+  outputFolder: ""
+run:
+  command: "yarn start"
+  envs:
+    - name: APP_ENV
+      value: 'sm://{{.projectId}}/env'
+addOns:
+  isWebsite: false
+  firestore: false
+  inSecure: false
