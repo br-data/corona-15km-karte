@@ -1,22 +1,29 @@
 {
-  "name": "corona-15km-karte",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node bin/3_server.js"
-  },
-  "author": "Michael Kreil (BR Data)",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.17.1",
-    "express-static-gzip": "^2.1.1"
-  },
-  "devDependencies": {
-    "babel-minify": "^0.5.1",
-    "node-zopfli": "^2.1.4",
-    "topojson-server": "^3.0.1",
-    "topojson-simplify": "^3.0.3",
-    "uglifycss": "0.0.29"
-  }
+	"name": "corona-15km-karte",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"start": "node bin/3_server.js"
+	},
+	"author": "Michael Kreil (BR Data)",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.17.1",
+		"express-static-gzip": "^2.1.1"
+	},
+	"devDependencies": {
+		"babel-minify": "^0.5.1",
+		"node-zopfli": "^2.1.4",
+		"topojson-server": "^3.0.1",
+		"topojson-simplify": "^3.0.3",
+		"uglifycss": "0.0.29"
+	},
+	"bugs": {
+		"url" : "https://github.com/br-data/corona-15km-karte/issues",
+		"email" : "michael.kreil@br.de"
+	},
+	"repository": {
+		"type" : "git",
+		"url" : "https://github.com/br-data/corona-15km-karte"
+	}
 }
