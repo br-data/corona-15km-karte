@@ -7,11 +7,16 @@ $(function () {
 	loadJSON('region.topo.json', res => data.borders = topojson.feature(res, res.objects.region));
 
 	function init() {
+		let minBBox = L.latLngBounds(boundingBox);
+		let maxBBox = minBBox.pad(0.2);
+
 		map = L.map('map', {
-			center: [48.95, 11.395],
-			zoom: 7,
+			maxBounds: maxBBox,
+			center: minBBox.getCenter(),
 			preferCanvas: true,
 			zoomControl: true,
+			minZoom: 6,
+			maxZoom: 14,
 		});
 
 		layerBackground = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png', {
@@ -25,6 +30,7 @@ $(function () {
 		let header = L.controlHTML({position:'topleft', node:'#header'}).addTo(map);
 		let footer = L.controlHTML({position:'bottomleft', node:'#footer'}).addTo(map);
 		
+		map.fitBounds(minBBox);
 	}
 
 	function start() {
