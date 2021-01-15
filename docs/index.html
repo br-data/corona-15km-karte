@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script type="text/javascript" src="assets/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript" src="assets/leaflet/leaflet.js"></script>
+	<script type="text/javascript" src="assets/leaflet/leaflet-src.js"></script>
 	<script type="text/javascript" src="assets/topojson-client.js"></script>
 	<script type="text/javascript" src="assets/turf.js"></script>
 	<script type="text/javascript" src="assets/main.js"></script>
@@ -16,11 +16,18 @@
 <body>
 	<div id="wrapper">
 		<div id="map"></div>
-		<form autocomplete="off" action="">
+	</div>
+	<div style="display: none">
+		<div id="header">
+			<h1>15-km-Umkreisrechner</h1>
+			<p>Geben Sie hier den Namen Ihrer Gemeinde in Bayern ein und erfahren Sie, wie weit der 15-km-Umkreis ab Gemeindegrenze für Sie reicht.</p>
 			<div class="autocomplete" style="width:250px;">
 				<input id="search" type="text" name="search" placeholder="Gemeinde finden">
 			</div>
-		</form>
+		</div>
+		<div id="footer">
+			Achtung: Geht ein hier berechneter Umkreis über eine Ländergrenze (Österreich, Tschechien) hinaus, bedeutet dies nicht, dass man dorthin einen Tagesausflug unternehmen kann. Bitte informieren Sie sich über die aktuellen Regeln zum Grenzverkehr.
+		</div>
 	</div>
 </body>
 </html>

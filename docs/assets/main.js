@@ -2,6 +2,7 @@ $(function () {
 	let map, layerBackground, layerBorders, layerLabels;
 	let data = {borders:false};
 
+	extendLeaflet();
 	init();
 	loadJSON('bayern.topo.json', res => data.borders = topojson.feature(res, res.objects.bayern));
 
@@ -12,6 +13,7 @@ $(function () {
 			preferCanvas: true,
 			zoomControl: true,
 		});
+
 		layerBackground = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png', {
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 			subdomains: 'abcd',
@@ -19,6 +21,10 @@ $(function () {
 		}).addTo(map);
 
 		map.zoomControl.setPosition('topright');
+
+		let header = L.controlHTML({position:'topleft', node:'#header'}).addTo(map);
+		let footer = L.controlHTML({position:'bottomleft', node:'#footer'}).addTo(map);
+		
 	}
 
 	function start() {
@@ -207,4 +213,42 @@ function autocomplete(input, arr) {
 	}
 
 	$(document).on('click', clearLists);
+}
+
+function extendLeaflet() {
+	let ControlHTML = L.Control.extend({
+		options: {
+			position: 'topleft'
+		},
+
+		initialize: function (options) {
+			L.setOptions(this, options);
+		},
+
+		onAdd: function (map) {
+			let node = $(this.options.node);
+			let container = $('<div class="leaflet-control"></div>');
+			container.html(node.html());
+			container.attr('id', node.attr('id'));
+
+			node.remove();
+
+			this._container = container.get(0);
+			this._update();
+
+			L.DomEvent.disableClickPropagation(this._container);
+
+			return this._container;
+		},
+
+		_update: function () {
+		}
+	});
+
+	let controlHTML = function (options) {
+		return new ControlHTML(options);
+	};
+
+	L.ControlHTML = ControlHTML;
+	L.controlHTML = controlHTML;
 }
