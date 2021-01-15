@@ -37,7 +37,6 @@ html, body {
 	margin: 0 0 0 0;
 	position: relative;
 	top: -18px;
-	color: #0099ff;
 }
 
 .leaflet-touch .leaflet-bar {
@@ -100,16 +99,16 @@ html, body {
 		.autocomplete-items div {
 			padding: 6px;
 			cursor: pointer;
-			background-color: #fff; 
+			background-color: #fff;
 			border-bottom: 1px solid #ddd;
 			box-sizing: border-box;
 		}
 		.autocomplete-items div:hover {
-			background-color: #eee; 
+			background-color: #eee;
 		}
 		.autocomplete-active {
-			background-color: #0099ff !important; 
-			color: #fff; 
+			background-color: #999 !important;
+			color: #fff;
 		}
 
 #footer {

@@ -31,8 +31,8 @@ $(function () {
 		layerBorders = L.geoJSON(data.borders, { style: {
 			stroke: false,
 			fill: false,
-			color: '#0099ff',
-			fillColor: 'rgba(0,157,255,0.8)',
+			color: 'rgb('+primaryColor+')',
+			fillColor: 'rgba('+primaryColor+',0.6)',
 			fillOpacity: 1,
 			opacity: 1,
 			weight: 1,
@@ -118,11 +118,11 @@ $(function () {
 
 			let layer = L.GeoJSON.geometryToLayer(feature, {interactive:false});
 			layer.setStyle({
-				stroke:false,
-				fill:false,
-				color:'#0099ff',
-				weight:1,
-				fillColor: 'rgba(0,157,255,0.2)',
+				stroke: false,
+				fill: false,
+				color: 'rgb('+primaryColor+')',
+				weight: 1,
+				fillColor: 'rgba('+primaryColor+',0.2)',
 			});
 			layer.feature = L.GeoJSON.asFeature(feature);
 
@@ -130,7 +130,7 @@ $(function () {
 			layerBorders.addLayer(layer);
 
 			let icon = L.divIcon({
-				html:'<p>'+l.feature.properties.GEN+'</p>',
+				html:'<p style="color:rgb('+primaryColor+')">'+l.feature.properties.GEN+'</p>',
 				className:'mapLabel',
 				iconSize:[200,0],
 			});
