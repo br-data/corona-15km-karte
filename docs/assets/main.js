@@ -4,7 +4,7 @@ $(function () {
 
 	extendLeaflet();
 	init();
-	loadJSON('bayern.topo.json', res => data.borders = topojson.feature(res, res.objects.bayern));
+	loadJSON('region.topo.json', res => data.borders = topojson.feature(res, res.objects.region));
 
 	function init() {
 		map = L.map('map', {

@@ -1,4 +1,0 @@
-index.html
-script.js
-style.css
-bayern.topo.json
