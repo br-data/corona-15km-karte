@@ -66,6 +66,7 @@ html, body {
 			#header p {
 				margin-right: 0;
 				max-width: 380px;
+				border-bottom-right-radius: 60px;
 			}
 		}
 
@@ -129,5 +130,6 @@ html, body {
 		margin-right: 0;
 		width: 270px;
 		padding: 5px;
+		border-top-right-radius: 20px;
 	}
 }
