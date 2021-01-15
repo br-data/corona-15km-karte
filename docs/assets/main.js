@@ -7,8 +7,8 @@ $(function () {
 	loadJSON('region.topo.json', res => data.borders = topojson.feature(res, res.objects.region));
 
 	function init() {
-		let minBBox = L.latLngBounds(boundingBox);
-		let maxBBox = minBBox.pad(0.2);
+		let minBBox = L.latLngBounds(boundingBox).pad(-0.1);
+		let maxBBox = L.latLngBounds(boundingBox).pad( 0.2);
 
 		map = L.map('map', {
 			maxBounds: maxBBox,
