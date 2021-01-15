@@ -46,18 +46,22 @@ $(function () {
 
 		layerLabels = L.layerGroup().addTo(map);
 
-		if (false) {
+		let alreadyClicked = false;
+		if (!L.Browser.mobile) {
 			layerBorders.on('mouseover', e => {
+				if (alreadyClicked) return;
 				let t = e.sourceTarget;
 				if (t) showLayer(t);
 			});
 			layerBorders.on('mouseout', e => {
+				if (alreadyClicked) return;
 				let t = e.sourceTarget;
 				if (t && !t.isSelected) hideLayer(t);
 			});
 		}
 
 		layerBorders.on('click', e => {
+			alreadyClicked = true;
 			let t = e.sourceTarget;
 			if (t) select(t);
 		})
