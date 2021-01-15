@@ -41,7 +41,8 @@ style = UglifyCSS.processString(style.join('\n'));
 fs.writeFileSync(resolve(folderPub, 'style.css'), style, 'utf8');
 
 console.log('write JavaScript');
-script = babelMinify(script.join('\n')).code;
+script = script.join('\n');
+script = babelMinify(script).code;
 fs.writeFileSync(resolve(folderPub, 'script.js'), script, 'utf8');
 
 fs.copyFileSync(resolve(folderSrc, 'bayern.topo.json'), resolve(folderPub, 'bayern.topo.json'));
