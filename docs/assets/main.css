@@ -51,6 +51,7 @@ html, body {
 	right: 0px;
 	padding: 10px;
 	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 
 	#header h1 {
@@ -118,6 +119,7 @@ html, body {
 	right: 0px;
 	padding: 10px 10px 20px 10px;
 	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 	font-size: 12px;
 	line-height: 1em;
 	color: rgba(0,0,0,0.5);
