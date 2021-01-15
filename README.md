@@ -16,7 +16,7 @@ Ist Beta!
 - Mit `node bin/2_build.js` wird der Build-Prozess gestartet, der das Verzeichnis `publish` erzeugt und befüllt. Alle Dateien sind dann minified und sogar mit Zopfli komprimiert.
 - Mit `node bin/3_server.js` oder `npm start` kann man einen express-Server starten, der die optimierte Version auf Port 3000 ausspielt.
 
-Bei Fragen, fragen. Bei Problemen bitte ein Issue anlegen.
+Bei Fragen den [Autor](https://github.com/MichaelKreil) fragen. Bei Problemen bitte ein Issue anlegen.
 
 
 
