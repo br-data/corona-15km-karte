@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node bin/4_server.js"
+    "start": "node bin/3_server.js"
   },
   "author": "Michael Kreil (BR Data)",
   "license": "MIT",
