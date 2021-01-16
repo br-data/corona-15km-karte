@@ -58,6 +58,20 @@ region = simplify(ps, 3e-9);
 region = filter(region, filterWeight(region, 1e-8, sphericalRingArea));
 region = quantize(region, transform);
 
+
+//console.log(region.arcs);
+//console.log(region.objects.region.geometries[0]);
+Object.keys(region).forEach(key => {
+	let buf = {key:region[key]};
+	buf = JSON.stringify(buf);
+	buf = Buffer.from(buf);
+	console.log([
+		key,
+		buf.length,
+		zlib.gzipSync(buf, {level:9}).length
+	].join('\t'))
+})
+
 // save topojson
 fs.writeFileSync(resolve(__dirname, '../docs/region.topo.json'), JSON.stringify(region), 'utf8');
 
