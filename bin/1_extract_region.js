@@ -1,9 +1,11 @@
 "use strict"
 
 const fs = require('fs');
+const zlib = require('zlib');
 const {resolve} = require('path');
 const {topology} = require('topojson-server');
-const {presimplify,simplify,sphericalTriangleArea} = require('topojson-simplify');
+const {presimplify,simplify,sphericalTriangleArea,filter,filterWeight,sphericalRingArea} = require('topojson-simplify');
+const {quantize} = require('topojson-client');
 
 // Welche Regionen sollen extrahiert werden?
 // Dazu muss man den entsprechenden regulären Ausdruck für die Gemeindeschlüssel definieren.
@@ -25,7 +27,7 @@ const {presimplify,simplify,sphericalTriangleArea} = require('topojson-simplify'
 // 15 - Sachsen-Anhalt
 // 16 - Freistaat Thüringen
 
-let regExpAGS = /^09/; // nur Bayern
+let regExpAGS = /^/; // nur Bayern
 
 
 
@@ -42,16 +44,19 @@ region.features = region.features.filter(f => regExpAGS.test(f.properties.AGS));
 region.features.forEach(f => {
 	f.properties = {
 		GEN: f.properties.GEN,
-		BEZ: f.properties.BEZ,
+		//BEZ: f.properties.BEZ,
 	}
 })
 
 // generate topojson
-region = topology({region}, 1e6);
+region = topology({region}, Math.pow(2,18));
+let transform = region.transform;
 
 // simplify to make it smaller
 let ps = presimplify(region, sphericalTriangleArea);
-region = simplify(ps, 1e-9);
+region = simplify(ps, 3e-9);
+region = filter(region, filterWeight(region, 1e-8, sphericalRingArea));
+region = quantize(region, transform);
 
 // save topojson
 fs.writeFileSync(resolve(__dirname, '../docs/region.topo.json'), JSON.stringify(region), 'utf8');
