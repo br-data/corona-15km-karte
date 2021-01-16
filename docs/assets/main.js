@@ -20,11 +20,12 @@ $(function () {
 		});
 
 		layerBackground = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png', {
-			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+			attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a target="_blank" href="https://carto.com/attributions">CARTO</a>',
 			subdomains: 'abcd',
 			maxZoom: 19,
 		}).addTo(map);
 
+		map.attributionControl.setPrefix('<a target="_blank" href="https://github.com/br-data/corona-15km-karte">Quellcode auf GitHub</a> | <a target="_blank" href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
 		map.zoomControl.setPosition('topright');
 
 		let header = L.controlHTML({position:'topleft', node:'#header'}).addTo(map);
