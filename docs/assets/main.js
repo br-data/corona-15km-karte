@@ -7,7 +7,7 @@ $(function () {
 	loadJSON('region.topo.json', res => data.borders = topojson.feature(res, res.objects.region));
 
 	function init() {
-		let minBBox = L.latLngBounds(boundingBox).pad(-0.1);
+		let minBBox = L.latLngBounds(viewBox).pad(-0.1);
 		let maxBBox = L.latLngBounds(boundingBox).pad( 0.2);
 
 		map = L.map('map', {
@@ -49,12 +49,12 @@ $(function () {
 		let alreadyClicked = false;
 		if (!L.Browser.mobile) {
 			layerBorders.on('mouseover', e => {
-				if (alreadyClicked) return;
+				//if (alreadyClicked) return;
 				let t = e.sourceTarget;
 				if (t) showLayer(t);
 			});
 			layerBorders.on('mouseout', e => {
-				if (alreadyClicked) return;
+				//if (alreadyClicked) return;
 				let t = e.sourceTarget;
 				if (t && !t.isSelected) hideLayer(t);
 			});
