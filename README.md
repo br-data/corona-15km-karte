@@ -18,6 +18,21 @@ Ist Beta!
 
 Bei Fragen den [Autor](https://github.com/MichaelKreil) fragen. Bei Problemen bitte ein Issue anlegen.
 
+## Datenquellen und Lizenzen
+
+### Gemeindegrenzen
+
+Die [Grenzen stammen vom Bundesamt für Kartographie und Geodäsie](https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-ebenen-stand-01-01-vg250-ebenen-01-01.html), werden vom [Bundesamt für Kartographie und Geodäsie](https://www.bkg.bund.de/DE/Home/home.html) unter [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0) veröffentlicht und liegen hier als GeoJSON in `data/gemeinden.geo.json`.
+
+Lizenzhinweis: [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) [BKG](https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-ebenen-stand-01-01-vg250-ebenen-01-01.html)
+
+### Hintergrundkarte
+
+Die Hintergrundkarte ist eine [CARTO basemap](https://carto.com/help/building-maps/basemap-list/), die für [nichtkommerzielle Verwendungen kostenlos](https://go.carto.com/hubfs/CARTO-Free-Basemaps-Terms-of-Service.pdf) nutzbar ist, und [Daten von OpenStreetMap](https://www.openstreetmap.org/copyright) verwendet.
+
+Lizenzhinweis: ©[OSM](https://www.openstreetmap.org/copyright), ©[CARTO](https://carto.com/attributions)
+
+
 
 
 
