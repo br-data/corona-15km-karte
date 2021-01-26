@@ -25,7 +25,7 @@ $(function () {
 		}).addTo(map);
 
 		let prefix = [
-			'<a target="_blank" href="https://github.com/br-data/corona-15km-karte">GitHub</a>',
+			'<a target="_blank" href="https://github.com/br-data/corona-15km-karte">Code auf GitHub</a>',
 			'<a target="_blank" href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a> <a target="_blank" href="https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-ebenen-stand-01-01-vg250-ebenen-01-01.html">BKG</a>',
 			'&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OSM</a>',
 			'&copy; <a target="_blank" href="https://carto.com/attributions">CARTO</a>',
