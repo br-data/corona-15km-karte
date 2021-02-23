@@ -7,29 +7,34 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    name: Setup k8s-app
+    outputs:
+      deployToK8s: ${{ steps.setupDeploy.outputs.deployToK8s }}
+    name: Setup
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
         with:
-          repository: br-data/k8s-config-provider-action
+          repository: br-data/cloud-deploy-action
           token: ${{ secrets.BRDATA_ACCESS }}
           path: ./
-      - name: Private Action
+      - id: setupDeploy
+        name: Private Action
         uses: ./
         with:
           access_token: ${{ secrets.BRDATA_ACCESS }}
           repo_name: ${{ github.event.repository.name }}
           tag: ${{ github.sha }}
           branch: ${{ github.ref }}
+          gc_dev_key: ${{ secrets.GC_SA_DEV_KEY }}
+          gc_live_key: ${{ secrets.GC_SA_LIVE_KEY }}
+          gc_dev_user: ${{ secrets.GC_SA_DEV_USER }}
+          gc_live_user: ${{ secrets.GC_SA_LIVE_USER }}
   build:
     runs-on: ubuntu-latest
     needs:
       - setup
+    if: needs.setup.outputs.deployToK8s == 'true'
     name: Build k8s-app
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Download Deployment Artifact
         uses: actions/download-artifact@v2
         with:
@@ -48,19 +53,19 @@ jobs:
     needs:
       - setup
       - build
+    if: needs.setup.outputs.deployToK8s == 'true'
     name: Deploy k8s-app
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Download Deployment Artifact
         uses: actions/download-artifact@v2
         with:
           name: deployment
           path: deployment
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@master
         with:
           version: "290.0.1"
-          service_account_key: ${{ secrets.GCLOUD_DEV }}
-          project_id: brdata-dev
-      - run: gcloud container clusters get-credentials dev --zone europe-west1
+          service_account_key: ${{ contains(github.ref, 'live') && secrets.GCLOUD_LIVE || secrets.GCLOUD_DEV }}
+          project_id: ${{ contains(github.ref, 'live') && 'brdata-live' || 'brdata-dev' }}
+      - run: gcloud container clusters get-credentials ${{ contains(github.ref, 'live') && 'live' || 'dev' }} --zone europe-west1
       - run: kubectl apply -f ./deployment/k8s-config/

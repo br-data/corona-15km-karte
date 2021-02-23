@@ -5,8 +5,6 @@
 isEnabled: true
 docker:
   preset: "yarn"
-  preparationCommand: ""
-  imageFrom: ""
   ignore: "node_modules"
 build:
   command: "npm i --production"
@@ -18,5 +16,4 @@ run:
       value: 'sm://{{.projectId}}/env'
 addOns:
   isWebsite: false
-  firestore: false
   inSecure: true
