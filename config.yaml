@@ -15,5 +15,5 @@ run:
     - name: APP_ENV
       value: 'sm://{{.projectId}}/env'
 settings:
-  type: website
+  type: service
   inSecure: true
